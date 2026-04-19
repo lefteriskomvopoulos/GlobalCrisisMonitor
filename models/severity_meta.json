@@ -1,0 +1,17 @@
+{
+  "features": [
+    "AvgTone",
+    "GoldsteinScale",
+    "NumSources",
+    "NumArticles",
+    "NumMentions"
+  ],
+  "epochs": 40,
+  "batch_size": 512,
+  "lr": 0.001,
+  "final_mae": 0.5543320775032043,
+  "final_rmse": 0.8989599947658021,
+  "n_train": 235523,
+  "n_test": 58881,
+  "device": "mps"
+}

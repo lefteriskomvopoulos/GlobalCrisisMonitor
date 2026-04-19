@@ -1,0 +1,25 @@
+{
+  "run_id": "395500a9a00a",
+  "timestamp": "2026-04-19T15:40:09.491111Z",
+  "model": "gbr_tone_forecaster",
+  "stage": "production",
+  "params": {
+    "n_estimators": 200,
+    "max_depth": 4,
+    "lr": 0.05,
+    "lags": [
+      1,
+      2,
+      3,
+      6,
+      12
+    ]
+  },
+  "metrics": {
+    "mae": 2.5364443912896135,
+    "rmse": 3.366814591337498,
+    "n_train": 5558,
+    "n_test": 1373,
+    "countries": 530
+  }
+}

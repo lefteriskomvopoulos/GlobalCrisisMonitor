@@ -4,7 +4,7 @@ charset-normalizer
 click
 colorama
 cramjam
-dash
+dash>=3.0.0
 fastparquet
 Flask
 fsspec
@@ -12,7 +12,9 @@ idna
 importlib_metadata
 itsdangerous
 Jinja2
+joblib
 MarkupSafe
+matplotlib
 narwhals
 nest-asyncio
 numpy
@@ -25,8 +27,11 @@ pyspark
 python-dateutil
 requests
 retrying
+scikit-learn
+seaborn
 setuptools
 six
+torch
 typing_extensions
 tzdata
 urllib3

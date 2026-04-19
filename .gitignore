@@ -1,0 +1,10 @@
+__pycache__/
+.venv/
+gdelt_data_unzipped/
+warehouse/
+mlruns/
+dashboard_db/
+metastore_db/
+.DS_Store
+derby.log
+gdelt_data/
