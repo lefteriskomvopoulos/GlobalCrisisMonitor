@@ -1,7 +1,7 @@
 {
-  "run_id": "bb3529d211ae",
-  "timestamp": "2026-05-05T16:05:47.000026Z",
-  "model": "spark_logistic_regression",
+  "run_id": "d5cfce9d0d84",
+  "timestamp": "2026-05-05T16:05:56.547853Z",
+  "model": "spark_decision_tree",
   "stage": "staging",
   "params": {
     "features": [
@@ -14,9 +14,9 @@
     "split": "0.8/0.2"
   },
   "metrics": {
-    "accuracy": 0.85462415121312,
-    "weightedPrecision": 0.843758862561047,
-    "weightedRecall": 0.8546241512131201,
-    "f1": 0.837421541824058
+    "accuracy": 0.9231386252630743,
+    "weightedPrecision": 0.9253403076721791,
+    "weightedRecall": 0.9231386252630743,
+    "f1": 0.9210187504132015
   }
 }
