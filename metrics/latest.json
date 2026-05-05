@@ -1,25 +1,22 @@
 {
-  "run_id": "395500a9a00a",
-  "timestamp": "2026-04-19T15:40:09.491111Z",
-  "model": "gbr_tone_forecaster",
-  "stage": "production",
+  "run_id": "bb3529d211ae",
+  "timestamp": "2026-05-05T16:05:47.000026Z",
+  "model": "spark_logistic_regression",
+  "stage": "staging",
   "params": {
-    "n_estimators": 200,
-    "max_depth": 4,
-    "lr": 0.05,
-    "lags": [
-      1,
-      2,
-      3,
-      6,
-      12
-    ]
+    "features": [
+      "AvgTone",
+      "GoldsteinScale",
+      "NumSources",
+      "NumArticles",
+      "NumMentions"
+    ],
+    "split": "0.8/0.2"
   },
   "metrics": {
-    "mae": 2.5364443912896135,
-    "rmse": 3.366814591337498,
-    "n_train": 5558,
-    "n_test": 1373,
-    "countries": 530
+    "accuracy": 0.85462415121312,
+    "weightedPrecision": 0.843758862561047,
+    "weightedRecall": 0.8546241512131201,
+    "f1": 0.837421541824058
   }
 }
