@@ -1,22 +1,25 @@
 {
-  "run_id": "d5cfce9d0d84",
-  "timestamp": "2026-05-05T16:05:56.547853Z",
-  "model": "spark_decision_tree",
-  "stage": "staging",
+  "run_id": "671c7ba6cc26",
+  "timestamp": "2026-05-05T16:09:36.198390Z",
+  "model": "gbr_tone_forecaster",
+  "stage": "production",
   "params": {
-    "features": [
-      "AvgTone",
-      "GoldsteinScale",
-      "NumSources",
-      "NumArticles",
-      "NumMentions"
-    ],
-    "split": "0.8/0.2"
+    "n_estimators": 200,
+    "max_depth": 4,
+    "lr": 0.05,
+    "lags": [
+      1,
+      2,
+      3,
+      6,
+      12
+    ]
   },
   "metrics": {
-    "accuracy": 0.9231386252630743,
-    "weightedPrecision": 0.9253403076721791,
-    "weightedRecall": 0.9231386252630743,
-    "f1": 0.9210187504132015
+    "mae": 2.693902964730482,
+    "rmse": 3.51909164419587,
+    "n_train": 17437,
+    "n_test": 4169,
+    "countries": 970
   }
 }

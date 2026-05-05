@@ -1,0 +1,207 @@
+/* Theme-aware overrides for the Dash filter bar.
+   Dash auto-loads everything under assets/ so this file is picked up
+   without any code change.
+
+   Selectors below cover both the legacy react-select (v1, .Select-foo)
+   and the modern react-select (v3+, .Select__foo with BEM) so the
+   dropdown styling sticks across Dash versions.
+*/
+
+/* =====================================================
+   DARK THEME
+   ===================================================== */
+.theme-dark .filter-label,
+.theme-dark .filter-bar label,
+.theme-dark .filter-bar > div > label {
+    color: #eeeeee !important;
+    opacity: 1 !important;
+}
+
+/* ---- Country dropdown (Dash 3, .dash-dropdown-*) ---- */
+/* Closed control */
+.theme-dark .dash-dropdown,
+.theme-dark .dash-dropdown-trigger,
+.theme-dark .dash-dropdown-wrapper {
+    background-color: #1c1c1c !important;
+    color: #eeeeee !important;
+    border-color: #555 !important;
+}
+.theme-dark .dash-dropdown-trigger {
+    border: 1px solid #555 !important;
+    border-radius: 4px !important;
+}
+.theme-dark .dash-dropdown-value,
+.theme-dark .dash-dropdown-value-item,
+.theme-dark .dash-dropdown-value-count,
+.theme-dark .dash-dropdown-placeholder {
+    color: #eeeeee !important;
+}
+.theme-dark .dash-dropdown-trigger-icon,
+.theme-dark .dash-dropdown-clear,
+.theme-dark .dash-dropdown-search-icon {
+    color: #cccccc !important;
+    fill: #cccccc !important;
+}
+.theme-dark .dash-dropdown-trigger-icon svg,
+.theme-dark .dash-dropdown-search-icon svg,
+.theme-dark .dash-dropdown-clear svg {
+    fill: #cccccc !important;
+    stroke: #cccccc !important;
+}
+
+/* Open menu panel (the white box) */
+.theme-dark .dash-dropdown-content {
+    background-color: #1c1c1c !important;
+    color: #eeeeee !important;
+    border: 1px solid #444 !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Search row */
+.theme-dark .dash-dropdown-search-container {
+    background-color: #1c1c1c !important;
+    border-bottom: 1px solid #333 !important;
+}
+.theme-dark .dash-dropdown-search,
+.theme-dark .dash-dropdown-search input,
+.theme-dark input.dash-dropdown-search {
+    background-color: #2a2a2a !important;
+    color: #eeeeee !important;
+    border: 1px solid #555 !important;
+    caret-color: #ffffff !important;
+}
+.theme-dark .dash-dropdown-search::placeholder,
+.theme-dark .dash-dropdown-search input::placeholder {
+    color: #999 !important;
+}
+
+/* Select All / Deselect All bar */
+.theme-dark .dash-dropdown-actions {
+    background-color: #1c1c1c !important;
+    border-bottom: 1px solid #333 !important;
+}
+.theme-dark .dash-dropdown-action-button,
+.theme-dark .dash-dropdown-action-button * {
+    color: #cccccc !important;
+    background-color: transparent !important;
+}
+.theme-dark .dash-dropdown-action-button:hover {
+    color: #ffffff !important;
+}
+
+/* Option list */
+.theme-dark .dash-dropdown-options {
+    background-color: #1c1c1c !important;
+}
+.theme-dark .dash-dropdown-option {
+    background-color: #1c1c1c !important;
+    color: #eeeeee !important;
+}
+.theme-dark .dash-dropdown-option:hover,
+.theme-dark .dash-dropdown-option[aria-selected="false"]:hover,
+.theme-dark .dash-dropdown-option.focused {
+    background-color: #2a2a2a !important;
+    color: #ffffff !important;
+}
+.theme-dark .dash-dropdown-option[aria-selected="true"] {
+    background-color: #353535 !important;
+    color: #ffffff !important;
+    font-weight: 600;
+}
+/* checkbox glyph inside each option */
+.theme-dark .dash-dropdown-option input[type="checkbox"] {
+    accent-color: #ff4b4b !important;
+}
+
+/* ---- DatePickerRange (react-dates) ---- */
+.theme-dark #filter-bar .DateInput,
+.theme-dark #filter-bar .DateInput_1,
+.theme-dark #filter-bar .DateRangePickerInput,
+.theme-dark #filter-bar .DateRangePickerInput_1,
+.theme-dark #filter-bar .DateRangePickerInput__withBorder,
+.theme-dark #filter-bar .DateRangePicker,
+.theme-dark .DateRangePickerInput {
+    background-color: #1c1c1c !important;
+    background: #1c1c1c !important;
+    border-color: #444 !important;
+}
+.theme-dark #filter-bar .DateInput_input,
+.theme-dark #filter-bar .DateInput_input_1,
+.theme-dark .DateInput_input {
+    background-color: #1c1c1c !important;
+    background: #1c1c1c !important;
+    color: #ffffff !important;
+    border-bottom: 2px solid transparent !important;
+}
+.theme-dark #filter-bar .DateInput_input::placeholder,
+.theme-dark #filter-bar .DateInput_input_1::placeholder {
+    color: #888 !important;
+}
+.theme-dark #filter-bar .DateInput_input__focused,
+.theme-dark #filter-bar .DateInput_input_1__focused {
+    border-bottom: 2px solid #888 !important;
+}
+.theme-dark #filter-bar .DateRangePickerInput_arrow_svg {
+    fill: #eeeeee !important;
+}
+
+/* ---- Sliders ---- */
+.theme-dark #filter-bar .rc-slider-rail,
+.theme-dark .rc-slider-rail {
+    background-color: #444 !important;
+}
+.theme-dark #filter-bar .rc-slider-mark-text,
+.theme-dark .rc-slider-mark-text {
+    color: #ffffff !important;
+}
+.theme-dark .filter-bar .rc-slider-tooltip-inner {
+    background-color: #2a2a2a !important;
+    color: #eeeeee !important;
+    border-color: #444 !important;
+}
+
+/* ---- Checklist ---- */
+.theme-dark .filter-bar input[type="checkbox"] + label,
+.theme-dark .filter-bar label {
+    color: #eeeeee !important;
+}
+
+/* ---- Reset button ---- */
+.theme-dark .filter-bar button {
+    color: #eeeeee !important;
+    border-color: #888 !important;
+    background-color: transparent !important;
+}
+.theme-dark .filter-bar button:hover {
+    background-color: #2a2a2a !important;
+}
+
+/* ---- Tab strip ---- */
+.theme-dark .tab--selected,
+.theme-dark .dash-tab--selected {
+    background-color: #1c1c1c !important;
+    color: #ffffff !important;
+}
+.theme-dark .dash-tab {
+    background-color: #111111 !important;
+    color: #cccccc !important;
+}
+
+/* =====================================================
+   LIGHT THEME (kept simple — defaults already work)
+   ===================================================== */
+.theme-light .filter-label,
+.theme-light .filter-bar label {
+    color: #222222 !important;
+    opacity: 1 !important;
+}
+.theme-light #filter-bar .DateInput_input,
+.theme-light #filter-bar .DateInput_input_1,
+.theme-light #filter-bar .Select-control,
+.theme-light #filter-bar .Select__control {
+    color: #111111 !important;
+    background-color: #ffffff !important;
+}
+.theme-light #filter-bar .rc-slider-mark-text {
+    color: #222222 !important;
+}

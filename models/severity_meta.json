@@ -9,9 +9,9 @@
   "epochs": 40,
   "batch_size": 512,
   "lr": 0.001,
-  "final_mae": 0.31580471992492676,
-  "final_rmse": 0.48051229140074536,
-  "n_train": 414587,
-  "n_test": 103647,
+  "final_mae": 1.4098237752914429,
+  "final_rmse": 2.0573441768334932,
+  "n_train": 504340,
+  "n_test": 126086,
   "device": "mps"
 }
