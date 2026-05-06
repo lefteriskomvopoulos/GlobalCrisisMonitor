@@ -176,13 +176,15 @@ const titlePage = [
 
   // Team table
   TABLE([
-    new TableRow({ children: [
-      TD('Name', { bold: true, shade: 'EEEEEE', width: 4680 }),
-      TD('NetID', { bold: true, shade: 'EEEEEE', width: 4680 }),
-    ]}),
-    new TableRow({ children: [TD('Rohit Shidid', { width: 4680 }), TD('rrs6770', { width: 4680 })]}),
-    new TableRow({ children: [TD('Lefteris Komvopoulos', { width: 4680 }), TD('ek4538', { width: 4680 })]}),
-    new TableRow({ children: [TD('Ron Zacharia', { width: 4680 }), TD('rrx2014', { width: 4680 })]}),
+    new TableRow({
+      children: [
+        TD('Name', { bold: true, shade: 'EEEEEE', width: 4680 }),
+        TD('NetID', { bold: true, shade: 'EEEEEE', width: 4680 }),
+      ]
+    }),
+    new TableRow({ children: [TD('Rohit Shidid', { width: 4680 }), TD('rrs6770', { width: 4680 })] }),
+    new TableRow({ children: [TD('Lefteris Komvopoulos', { width: 4680 }), TD('ek4538', { width: 4680 })] }),
+    new TableRow({ children: [TD('Ron Zacharia', { width: 4680 }), TD('rrx2014', { width: 4680 })] }),
   ], [4680, 4680]),
 
   new Paragraph({ spacing: { after: 400 }, children: [new TextRun(' ')] }),
@@ -211,8 +213,10 @@ const titlePage = [
 
 // ---------- Table of Contents ----------
 const tocPage = [
-  new Paragraph({ pageBreakBefore: true, heading: HeadingLevel.HEADING_1,
-    children: [new TextRun('Table of Contents')] }),
+  new Paragraph({
+    pageBreakBefore: true, heading: HeadingLevel.HEADING_1,
+    children: [new TextRun('Table of Contents')]
+  }),
   new TableOfContents('Table of Contents', { hyperlink: true, headingStyleRange: '1-3' }),
 ];
 
@@ -234,16 +238,16 @@ const executiveSummary = [
   H2('1.4 Technologies used'),
   PARA('Everything is Python 3.9. We tested on macOS and Linux. Major picks:'),
   TABLE([
-    new TableRow({ children: [TD('Layer', { bold: true, shade: 'EEEEEE' }), TD('Technology', { bold: true, shade: 'EEEEEE' })]}),
-    new TableRow({ children: [TD('Distributed processing'), TD('Apache Spark 4.0 (PySpark, Spark MLlib, Spark SQL)')]}),
-    new TableRow({ children: [TD('Storage / warehouse'), TD('Apache Parquet, Hive-style date+country partitioning')]}),
-    new TableRow({ children: [TD('Schema & query catalog'), TD('Hive support enabled via spark.sql.warehouse.dir')]}),
-    new TableRow({ children: [TD('Deep learning'), TD('PyTorch 2.x feed-forward regressor (CPU/MPS auto)')]}),
-    new TableRow({ children: [TD('Classical ML'), TD('scikit-learn IsolationForest + GradientBoostingRegressor')]}),
-    new TableRow({ children: [TD('Visualisation'), TD('Plotly + Dash, matplotlib + seaborn')]}),
-    new TableRow({ children: [TD('Ingestion'), TD('Python requests + ThreadPoolExecutor (parallel HTTP)')]}),
-    new TableRow({ children: [TD('Storage I/O'), TD('PyArrow + fastparquet for the pandas/Spark handoff')]}),
-    new TableRow({ children: [TD('MLOps'), TD('JSONL run log, in-process tracker (mlflow-style schema)')]}),
+    new TableRow({ children: [TD('Layer', { bold: true, shade: 'EEEEEE' }), TD('Technology', { bold: true, shade: 'EEEEEE' })] }),
+    new TableRow({ children: [TD('Distributed processing'), TD('Apache Spark 4.0 (PySpark, Spark MLlib, Spark SQL)')] }),
+    new TableRow({ children: [TD('Storage / warehouse'), TD('Apache Parquet, Hive-style date+country partitioning')] }),
+    new TableRow({ children: [TD('Schema & query catalog'), TD('Hive support enabled via spark.sql.warehouse.dir')] }),
+    new TableRow({ children: [TD('Deep learning'), TD('PyTorch 2.x feed-forward regressor (CPU/MPS auto)')] }),
+    new TableRow({ children: [TD('Classical ML'), TD('scikit-learn IsolationForest + GradientBoostingRegressor')] }),
+    new TableRow({ children: [TD('Visualisation'), TD('Plotly + Dash, matplotlib + seaborn')] }),
+    new TableRow({ children: [TD('Ingestion'), TD('Python requests + ThreadPoolExecutor (parallel HTTP)')] }),
+    new TableRow({ children: [TD('Storage I/O'), TD('PyArrow + fastparquet for the pandas/Spark handoff')] }),
+    new TableRow({ children: [TD('MLOps'), TD('JSONL run log, in-process tracker (mlflow-style schema)')] }),
   ], [4680, 4680]),
 ];
 
@@ -373,20 +377,20 @@ const bigDataConcepts = [
   H1('4. Big Data Concepts in Use'),
   PARA('The demo runs on one laptop, but we built it around the same patterns a real cluster would use. The table below maps every big-data concept the project exercises to the file or function in the codebase where you can see it.'),
   TABLE([
-    new TableRow({ children: [TD('Concept', { bold: true, shade: 'EEEEEE', width: 3000 }), TD('Where applied in the codebase', { bold: true, shade: 'EEEEEE', width: 6360 })]}),
-    new TableRow({ children: [TD('Distributed compute', { width: 3000 }), TD('Spark local[*] master spawns one executor per CPU core; ETL, KMeans, classifier training all shuffle across them.', { width: 6360 })]}),
-    new TableRow({ children: [TD('Columnar storage', { width: 3000 }), TD('Parquet (Snappy compressed) is used for both warehouse/ and dashboard_db/. Compresses ~110 MB TSV → ~65 MB Parquet, allows column projection at read time.', { width: 6360 })]}),
-    new TableRow({ children: [TD('Hive-style partitioning', { width: 3000 }), TD('Two-level directory partitioning by PartitionDate and PartitionCountry; Spark prunes partitions on filter push-down without any extra config.', { width: 6360 })]}),
-    new TableRow({ children: [TD('Hive metastore integration', { width: 3000 }), TD('SparkSession built with enableHiveSupport() and a configured spark.sql.warehouse.dir; the cleaned warehouse is registered as a temp view "gdelt_events" so the same SQL queries that work in beeline work here.', { width: 6360 })]}),
-    new TableRow({ children: [TD('Schema-on-read', { width: 3000 }), TD('Raw GDELT TSVs have no embedded schema. A 61-column StructType is applied at read time and try_cast is used per field to keep bad rows alive.', { width: 6360 })]}),
-    new TableRow({ children: [TD('ETL', { width: 3000 }), TD('Three classic phases: extract (HTTP), transform (Spark SQL try_cast / filter / project), load (partitioned Parquet).', { width: 6360 })]}),
-    new TableRow({ children: [TD('Distributed ML', { width: 3000 }), TD('Spark MLlib Pipelines for the four classifiers and KMeans. No driver-side collect; everything stays as RDDs/DataFrames.', { width: 6360 })]}),
-    new TableRow({ children: [TD('Lambda-style separation', { width: 3000 }), TD('Heavy distributed work in Spark, light per-row scoring in pandas / sklearn / PyTorch. Parquet is the lingua franca between the two.', { width: 6360 })]}),
-    new TableRow({ children: [TD('Idempotent stages', { width: 3000 }), TD('Every stage overwrites cleanly. --skip / --only flags allow surgical reruns. Crash-safe: a half-finished pipeline can be resumed from any stage.', { width: 6360 })]}),
-    new TableRow({ children: [TD('MLOps tracking', { width: 3000 }), TD('Append-only metrics/runs.jsonl records every training (RF, LR, DT, SVC, PyTorch, IsoForest, forecaster). Models are promoted from "staging" to "production" stages.', { width: 6360 })]}),
-    new TableRow({ children: [TD('Parallel I/O', { width: 3000 }), TD('Eight-worker ThreadPoolExecutor for the GDELT download phase saturates network I/O without overwhelming the GDELT servers.', { width: 6360 })]}),
-    new TableRow({ children: [TD('Throughput measurement', { width: 3000 }), TD('Per-stage timings recorded to metrics/pipeline_run.json so we can answer the proposal\'s evaluation question of how long it takes to process N rows.', { width: 6360 })]}),
-    new TableRow({ children: [TD('Driver-memory escape hatch', { width: 3000 }), TD('Spark to pandas hand-off through temporary Parquet instead of toPandas(). Sidesteps TaskResultLost and Arrow overflow at scale.', { width: 6360 })]}),
+    new TableRow({ children: [TD('Concept', { bold: true, shade: 'EEEEEE', width: 3000 }), TD('Where applied in the codebase', { bold: true, shade: 'EEEEEE', width: 6360 })] }),
+    new TableRow({ children: [TD('Distributed compute', { width: 3000 }), TD('Spark local[*] master spawns one executor per CPU core; ETL, KMeans, classifier training all shuffle across them.', { width: 6360 })] }),
+    new TableRow({ children: [TD('Columnar storage', { width: 3000 }), TD('Parquet (Snappy compressed) is used for both warehouse/ and dashboard_db/. Compresses ~110 MB TSV → ~65 MB Parquet, allows column projection at read time.', { width: 6360 })] }),
+    new TableRow({ children: [TD('Hive-style partitioning', { width: 3000 }), TD('Two-level directory partitioning by PartitionDate and PartitionCountry; Spark prunes partitions on filter push-down without any extra config.', { width: 6360 })] }),
+    new TableRow({ children: [TD('Hive metastore integration', { width: 3000 }), TD('SparkSession built with enableHiveSupport() and a configured spark.sql.warehouse.dir; the cleaned warehouse is registered as a temp view "gdelt_events" so the same SQL queries that work in beeline work here.', { width: 6360 })] }),
+    new TableRow({ children: [TD('Schema-on-read', { width: 3000 }), TD('Raw GDELT TSVs have no embedded schema. A 61-column StructType is applied at read time and try_cast is used per field to keep bad rows alive.', { width: 6360 })] }),
+    new TableRow({ children: [TD('ETL', { width: 3000 }), TD('Three classic phases: extract (HTTP), transform (Spark SQL try_cast / filter / project), load (partitioned Parquet).', { width: 6360 })] }),
+    new TableRow({ children: [TD('Distributed ML', { width: 3000 }), TD('Spark MLlib Pipelines for the four classifiers and KMeans. No driver-side collect; everything stays as RDDs/DataFrames.', { width: 6360 })] }),
+    new TableRow({ children: [TD('Lambda-style separation', { width: 3000 }), TD('Heavy distributed work in Spark, light per-row scoring in pandas / sklearn / PyTorch. Parquet is the lingua franca between the two.', { width: 6360 })] }),
+    new TableRow({ children: [TD('Idempotent stages', { width: 3000 }), TD('Every stage overwrites cleanly. --skip / --only flags allow surgical reruns. Crash-safe: a half-finished pipeline can be resumed from any stage.', { width: 6360 })] }),
+    new TableRow({ children: [TD('MLOps tracking', { width: 3000 }), TD('Append-only metrics/runs.jsonl records every training (RF, LR, DT, SVC, PyTorch, IsoForest, forecaster). Models are promoted from "staging" to "production" stages.', { width: 6360 })] }),
+    new TableRow({ children: [TD('Parallel I/O', { width: 3000 }), TD('Eight-worker ThreadPoolExecutor for the GDELT download phase saturates network I/O without overwhelming the GDELT servers.', { width: 6360 })] }),
+    new TableRow({ children: [TD('Throughput measurement', { width: 3000 }), TD('Per-stage timings recorded to metrics/pipeline_run.json so we can answer the proposal\'s evaluation question of how long it takes to process N rows.', { width: 6360 })] }),
+    new TableRow({ children: [TD('Driver-memory escape hatch', { width: 3000 }), TD('Spark to pandas hand-off through temporary Parquet instead of toPandas(). Sidesteps TaskResultLost and Arrow overflow at scale.', { width: 6360 })] }),
   ], [3000, 6360]),
   PARA('Section 5 picks up several of these threads. The partitioning strategy and the Parquet hand-off in particular drove a lot of the final design.'),
 ];
@@ -523,24 +527,24 @@ const dataResults = [
   LINK('https://github.com/<your-handle>/NYU-Big-data-project', 'https://github.com/<your-handle>/NYU-Big-data-project'),
   H2('10.2 Data sources'),
   TABLE([
-    new TableRow({ children: [TD('Resource', { bold: true, shade: 'EEEEEE', width: 3000 }), TD('URL / location', { bold: true, shade: 'EEEEEE', width: 6360 })]}),
-    new TableRow({ children: [TD('GDELT v2 master file list', { width: 3000 }), TD('http://data.gdeltproject.org/gdeltv2/masterfilelist.txt', { width: 6360 })]}),
-    new TableRow({ children: [TD('GDELT project home', { width: 3000 }), TD('https://www.gdeltproject.org/', { width: 6360 })]}),
-    new TableRow({ children: [TD('CAMEO event codes', { width: 3000 }), TD('https://www.gdeltproject.org/data.html#documentation', { width: 6360 })]}),
-    new TableRow({ children: [TD('Apache Spark docs', { width: 3000 }), TD('https://spark.apache.org/docs/latest/', { width: 6360 })]}),
-    new TableRow({ children: [TD('Plotly Dash', { width: 3000 }), TD('https://dash.plotly.com/', { width: 6360 })]}),
+    new TableRow({ children: [TD('Resource', { bold: true, shade: 'EEEEEE', width: 3000 }), TD('URL / location', { bold: true, shade: 'EEEEEE', width: 6360 })] }),
+    new TableRow({ children: [TD('GDELT v2 master file list', { width: 3000 }), TD('http://data.gdeltproject.org/gdeltv2/masterfilelist.txt', { width: 6360 })] }),
+    new TableRow({ children: [TD('GDELT project home', { width: 3000 }), TD('https://www.gdeltproject.org/', { width: 6360 })] }),
+    new TableRow({ children: [TD('CAMEO event codes', { width: 3000 }), TD('https://www.gdeltproject.org/data.html#documentation', { width: 6360 })] }),
+    new TableRow({ children: [TD('Apache Spark docs', { width: 3000 }), TD('https://spark.apache.org/docs/latest/', { width: 6360 })] }),
+    new TableRow({ children: [TD('Plotly Dash', { width: 3000 }), TD('https://dash.plotly.com/', { width: 6360 })] }),
   ], [3000, 6360]),
   H2('10.3 Latest evaluation metrics'),
   PARA('The pipeline records every metric the proposal asked for in section 7. A representative end-to-end run on 518,234 events spanning roughly five days of global news gave us the following:'),
   TABLE([
-    new TableRow({ children: [TD('Model', { bold: true, shade: 'EEEEEE', width: 4000 }), TD('Metric', { bold: true, shade: 'EEEEEE', width: 2500 }), TD('Value', { bold: true, shade: 'EEEEEE', width: 2860 })]}),
-    new TableRow({ children: [TD('Spark Random Forest', { width: 4000 }), TD('accuracy / F1', { width: 2500 }), TD('0.919 / 0.917', { width: 2860 })]}),
-    new TableRow({ children: [TD('Spark Decision Tree', { width: 4000 }), TD('accuracy / F1', { width: 2500 }), TD('0.920 / 0.916', { width: 2860 })]}),
-    new TableRow({ children: [TD('Spark Logistic Regression', { width: 4000 }), TD('accuracy / F1', { width: 2500 }), TD('0.858 / 0.840', { width: 2860 })]}),
-    new TableRow({ children: [TD('Spark Linear SVC (One-vs-Rest)', { width: 4000 }), TD('accuracy / F1', { width: 2500 }), TD('0.752 / 0.650', { width: 2860 })]}),
-    new TableRow({ children: [TD('PyTorch SeverityNet', { width: 4000 }), TD('MAE / RMSE', { width: 2500 }), TD('0.73 / 1.02', { width: 2860 })]}),
-    new TableRow({ children: [TD('GradientBoosted tone forecaster', { width: 4000 }), TD('MAE / RMSE', { width: 2500 }), TD('2.67 / 3.50', { width: 2860 })]}),
-    new TableRow({ children: [TD('IsolationForest', { width: 4000 }), TD('precision / recall / F1', { width: 2500 }), TD('0.40 / 0.16 / 0.22', { width: 2860 })]}),
+    new TableRow({ children: [TD('Model', { bold: true, shade: 'EEEEEE', width: 4000 }), TD('Metric', { bold: true, shade: 'EEEEEE', width: 2500 }), TD('Value', { bold: true, shade: 'EEEEEE', width: 2860 })] }),
+    new TableRow({ children: [TD('Spark Random Forest', { width: 4000 }), TD('accuracy / F1', { width: 2500 }), TD('0.919 / 0.917', { width: 2860 })] }),
+    new TableRow({ children: [TD('Spark Decision Tree', { width: 4000 }), TD('accuracy / F1', { width: 2500 }), TD('0.920 / 0.916', { width: 2860 })] }),
+    new TableRow({ children: [TD('Spark Logistic Regression', { width: 4000 }), TD('accuracy / F1', { width: 2500 }), TD('0.858 / 0.840', { width: 2860 })] }),
+    new TableRow({ children: [TD('Spark Linear SVC (One-vs-Rest)', { width: 4000 }), TD('accuracy / F1', { width: 2500 }), TD('0.752 / 0.650', { width: 2860 })] }),
+    new TableRow({ children: [TD('PyTorch SeverityNet', { width: 4000 }), TD('MAE / RMSE', { width: 2500 }), TD('0.73 / 1.02', { width: 2860 })] }),
+    new TableRow({ children: [TD('GradientBoosted tone forecaster', { width: 4000 }), TD('MAE / RMSE', { width: 2500 }), TD('2.67 / 3.50', { width: 2860 })] }),
+    new TableRow({ children: [TD('IsolationForest', { width: 4000 }), TD('precision / recall / F1', { width: 2500 }), TD('0.40 / 0.16 / 0.22', { width: 2860 })] }),
   ], [4000, 2500, 2860]),
   PARA('Numbers shift a little run to run because the source data window slides forward as new GDELT exports get published. Every training run gets appended to metrics/runs.jsonl, and the Models tab of the dashboard plots the trend across runs (Figure 7.7).'),
   H2('10.4 Static reports'),
@@ -602,25 +606,39 @@ const doc = new Document({
   styles: {
     default: { document: { run: { font: 'Arial', size: 22 } } }, // 11pt body
     paragraphStyles: [
-      { id: 'Heading1', name: 'Heading 1', basedOn: 'Normal', next: 'Normal', quickFormat: true,
+      {
+        id: 'Heading1', name: 'Heading 1', basedOn: 'Normal', next: 'Normal', quickFormat: true,
         run: { size: 36, bold: true, font: 'Arial', color: '1F3864' },
-        paragraph: { spacing: { before: 240, after: 240 }, outlineLevel: 0 } },
-      { id: 'Heading2', name: 'Heading 2', basedOn: 'Normal', next: 'Normal', quickFormat: true,
+        paragraph: { spacing: { before: 240, after: 240 }, outlineLevel: 0 }
+      },
+      {
+        id: 'Heading2', name: 'Heading 2', basedOn: 'Normal', next: 'Normal', quickFormat: true,
         run: { size: 28, bold: true, font: 'Arial', color: '111111' },
-        paragraph: { spacing: { before: 200, after: 120 }, outlineLevel: 1 } },
-      { id: 'Heading3', name: 'Heading 3', basedOn: 'Normal', next: 'Normal', quickFormat: true,
+        paragraph: { spacing: { before: 200, after: 120 }, outlineLevel: 1 }
+      },
+      {
+        id: 'Heading3', name: 'Heading 3', basedOn: 'Normal', next: 'Normal', quickFormat: true,
         run: { size: 24, bold: true, font: 'Arial', color: '333333' },
-        paragraph: { spacing: { before: 160, after: 80 }, outlineLevel: 2 } },
+        paragraph: { spacing: { before: 160, after: 80 }, outlineLevel: 2 }
+      },
     ],
   },
   numbering: {
     config: [
-      { reference: 'bullets',
-        levels: [{ level: 0, format: LevelFormat.BULLET, text: '•', alignment: AlignmentType.LEFT,
-          style: { paragraph: { indent: { left: 720, hanging: 360 } } } }] },
-      { reference: 'numbers',
-        levels: [{ level: 0, format: LevelFormat.DECIMAL, text: '%1.', alignment: AlignmentType.LEFT,
-          style: { paragraph: { indent: { left: 720, hanging: 360 } } } }] },
+      {
+        reference: 'bullets',
+        levels: [{
+          level: 0, format: LevelFormat.BULLET, text: '•', alignment: AlignmentType.LEFT,
+          style: { paragraph: { indent: { left: 720, hanging: 360 } } }
+        }]
+      },
+      {
+        reference: 'numbers',
+        levels: [{
+          level: 0, format: LevelFormat.DECIMAL, text: '%1.', alignment: AlignmentType.LEFT,
+          style: { paragraph: { indent: { left: 720, hanging: 360 } } }
+        }]
+      },
     ],
   },
   sections: [{
@@ -631,24 +649,28 @@ const doc = new Document({
       },
     },
     headers: {
-      default: new Header({ children: [new Paragraph({
-        alignment: AlignmentType.RIGHT,
-        children: [new TextRun({
-          text: 'CS-GY 6513 Big Data: Final Project Report',
-          size: 18, color: '888888', italics: true,
-        })],
-      })] }),
+      default: new Header({
+        children: [new Paragraph({
+          alignment: AlignmentType.RIGHT,
+          children: [new TextRun({
+            text: 'CS-GY 6513 Big Data: Final Project Report',
+            size: 18, color: '888888', italics: true,
+          })],
+        })]
+      }),
     },
     footers: {
-      default: new Footer({ children: [new Paragraph({
-        alignment: AlignmentType.CENTER,
-        children: [
-          new TextRun({ text: 'Page ', size: 18, color: '888888' }),
-          new TextRun({ children: [PageNumber.CURRENT], size: 18, color: '888888' }),
-          new TextRun({ text: ' of ', size: 18, color: '888888' }),
-          new TextRun({ children: [PageNumber.TOTAL_PAGES], size: 18, color: '888888' }),
-        ],
-      })] }),
+      default: new Footer({
+        children: [new Paragraph({
+          alignment: AlignmentType.CENTER,
+          children: [
+            new TextRun({ text: 'Page ', size: 18, color: '888888' }),
+            new TextRun({ children: [PageNumber.CURRENT], size: 18, color: '888888' }),
+            new TextRun({ text: ' of ', size: 18, color: '888888' }),
+            new TextRun({ children: [PageNumber.TOTAL_PAGES], size: 18, color: '888888' }),
+          ],
+        })]
+      }),
     },
     children: [
       ...titlePage,
